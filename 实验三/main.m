@@ -118,7 +118,7 @@ for k = 1:30
     
     diff = abs(norm(r2_new) - r_mag);
     fprintf('Iter %2d: r2 = %.4f km, diff = %.4f\n', k, norm(r2_new), diff);
-    
+    fprintf('位置矢量r2= ( %.4f,%.4f,%.4f),速度矢量v2=( %.4f,%.4f,%.4f) \n',r2_new,v2_new);
     if diff < 1e-8
         r2 = r2_new; v2 = v2_new;
         fprintf('迭代收敛。\n');
@@ -134,5 +134,5 @@ fprintf('最终状态:\n r = [%.4f, %.4f, %.4f]\n v = [%.4f, %.4f, %.4f]\n', r2,
 fprintf('\n(3) 轨道根数:\n');
 [a, e, i, RAAN,w , f] = coe_from_sov(r2, v2, const.mu);
 save guidaogenshu.mat a e i RAAN w f
-fprintf(' a = %.4f km\n e = %.4f\n i = %.4f deg\n', a, e, i);
+fprintf(' a = %.4f km\n e = %.4f\n i = %.4f deg\n', a, e, rad2deg(i));
 fprintf(' Ω = %.4f deg\n ω = %.4f deg\n f = %.4f deg\n ', rad2deg(RAAN),rad2deg (w), rad2deg(f));
